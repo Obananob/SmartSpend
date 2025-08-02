@@ -21,18 +21,31 @@ if page == "Dashboard":
     # upload the file
     data = st.file_uploader("Upload you transaction data", type=['csv'])
 
-    # convert the csv file to a dataframe
-    df = pd.read_csv(data)
-    df = df.dropna().reset_index(drop=True)
+    if data is not None:
+        try:
+            # Read the CSV file into a Pandas DataFrame
+            df = pd.read_csv(data)
+            df = df.dropna().reset_index(drop=True)
+            st.write("Top 5 rows")
+            st.write(df.head())
+            
 
-    st.write("Top 5 rows")
-    st.write(df.head())
+        except Exception as e:
+            st.error(f"Error processing file: {e}")
+    else:
+        st.info("Please upload a CSV file to proceed.")
+
+
+
 
     # get the customer info and the preprocess it
     start = st.text_input("Starting point")
-    start = int(start)
+    
+    if start:
+        start = int(start)
     end = st.text_input("Ending point")
-    end = int(end)
+    if end:
+        end = int(end)
 
 
 
