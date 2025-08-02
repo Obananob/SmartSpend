@@ -54,6 +54,7 @@ if page == "Dashboard":
         else:
             st.info("Please upload a CSV file to proceed.")
     elif input_method == 'Manual Entry':
+        st.write("Please enter the customers detail")
         data = []
 
         col1, col2, col3 = st.columns(3)
